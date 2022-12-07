@@ -29,20 +29,12 @@ class _HomeViewState extends State<HomeView> {
           future: chars,
           builder: (context, chars) {
             if (chars.hasData) {
-              return Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  ListView.builder(
-                    itemCount: chars.data!.count,
-                    itemBuilder: ((context, index) {
-                      return CharacterCardWidget(char: chars.data!.results[index]);
-                    }),
-                  ),
-                ],
+              return ListView.builder(
+                itemCount: chars.data!.count,
+                itemBuilder: ((context, index) {
+                  return CharacterCardWidget(char: chars.data!.results[index]);
+                }),
               );
-            } else if (chars.hasError) {
-              print(chars.error.toString());
-              return const CircularProgressIndicator();
             }
             return const CircularProgressIndicator();
           }),
